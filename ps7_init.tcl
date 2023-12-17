@@ -31,13 +31,13 @@ proc ps7_pll_init_data {} {
 proc ps7_ocm_init_data {} {
 	# all 256 kb map to high,(zephyr,ocm=&ocm_high)
 	mwr -force 0XF8000008 0x0000DF0D
-	mask_write 0xF8000910 0x0000000F 0x0000000F
+	mask_write 0xF8000910 0x0000001F 0x0000001F
 	mwr -force 0XF8000004 0x0000767B
 
-	# mpcore.Filtering_End_Address_Register = 0xFFE0_0000
+	# mpcore.Filtering_Start_Address_Register = 0x0010_0000
 	mask_write 0xF8F00040 0xFFFFFFFF 0x00000000
 
-	# mpcore.Filtering_Start_Address_Register = 0x0000_0000
+	# mpcore.Filtering_End_Address_Register = 0xFFE0_0000
 	mask_write 0xF8F00044 0xFFFFFFFF 0xFFE00000
 
 	# mpcore.SCU_CONTROL_REGISTER[Address_filtering_enable] = 1 // bit 1
